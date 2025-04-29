@@ -5,20 +5,59 @@
     <title>Documentación APIs - Caracterización</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-      body { margin: 0; padding: 0; }
-      redoc { display: block; }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+      nav {
+        background-color: #007bff;
+        padding: 1rem;
+      }
+      nav a {
+        color: white;
+        margin-right: 1rem;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .doc-section {
+        display: none;
+        padding: 2rem;
+      }
+      .active {
+        display: block;
+      }
     </style>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet" />
+    <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
   </head>
 
   <body>
-    <div id="container"></div>
 
-    <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+    <nav>
+      <a href="#" onclick="showDoc('usuario')">Usuarios</a>
+      <a href="#" onclick="showDoc('pregunta')">Preguntas</a>
+      <a href="#" onclick="showDoc('encuesta')">Encuestas</a>
+    </nav>
+
+    <div id="usuario" class="doc-section"></div>
+    <div id="pregunta" class="doc-section"></div>
+    <div id="encuesta" class="doc-section"></div>
+
     <script>
-      Redoc.init('usuario-api-docs.json', {
-        scrollYOffset: 50
-      }, document.getElementById('container'));
+      function showDoc(section) {
+        document.querySelectorAll('.doc-section').forEach(div => div.classList.remove('active'));
+        document.getElementById(section).classList.add('active');
+      }
+
+      Redoc.init('usuario-api-docs.json', {}, document.getElementById('usuario'));
+      Redoc.init('pregunta-api-docs.json', {}, document.getElementById('pregunta'));
+      Redoc.init('encuesta-api-docs.json', {}, document.getElementById('encuesta'));
+
+      // Mostrar la primera sección al cargar
+      document.addEventListener('DOMContentLoaded', () => {
+        showDoc('usuario');
+      });
     </script>
+
   </body>
 </html>
