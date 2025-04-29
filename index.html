@@ -1,35 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
     <title>Documentación APIs - Caracterización</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 2rem;
-      }
-      h1 {
-        margin-top: 1rem;
-        border-bottom: 1px solid #ddd;
-      }
-      redoc {
-        margin-bottom: 4rem;
-      }
+      body { margin: 0; padding: 0; }
+      redoc { display: block; }
     </style>
-    <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet" />
   </head>
+
   <body>
-    <h1>API de Usuarios</h1>
-    <redoc spec-url="usuario-api-docs.json"></redoc>
+    <div id="container"></div>
 
-    <h1>API de Preguntas</h1>
-    <redoc spec-url="pregunta-api-docs.json"></redoc>
-
-    <h1>API de Encuestas</h1>
-    <redoc spec-url="encuesta-api-docs.json"></redoc>
-
-    <h1>API de Prueba</h1>
-    <redoc spec-url="test-api-docs.json"></redoc>
-    
+    <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+    <script>
+      Redoc.init('usuario-api-docs.json', {
+        scrollYOffset: 50
+      }, document.getElementById('container'));
+    </script>
   </body>
 </html>
