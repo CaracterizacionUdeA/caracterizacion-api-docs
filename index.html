@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Redoc Test</title>
-  <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
-</head>
-<body>
-  <redoc spec-url="pregunta-api-docs.json"></redoc>
-</body>
-</html>
+  <head>
+    <title>Documentación APIs - Caracterización</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 2rem;
+      }
+      h1 {
+        margin-top: 1rem;
+        border-bottom: 1px solid #ddd;
+      }
+      redoc {
+        margin-bottom: 4rem;
+      }
+    </style>
+    <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+  </head>
+  <body>
+    <h1>API de Usuarios</h1>
+    <redoc spec-url="usuario-api-docs.json"></redoc>
 
+    <h1>API de Preguntas</h1>
+    <redoc spec-url="pregunta-api-docs.json"></redoc>
+
+    <h1>API de Encuestas</h1>
+    <redoc spec-url="encuesta-api-docs.json"></redoc>
+  </body>
+</html>
