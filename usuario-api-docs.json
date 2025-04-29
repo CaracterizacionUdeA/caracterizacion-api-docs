@@ -1,0 +1,848 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API de UsuarioMS",
+    "description": "Documentación de la API de UsuarioMS",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9393/userms",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/user/update": {
+      "put": {
+        "tags": [
+          "usuario-controller"
+        ],
+        "operationId": "actualizarUsuario",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseUsuarioDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/role/{id}": {
+      "get": {
+        "tags": [
+          "rol-controller"
+        ],
+        "operationId": "obtenerRolPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseRolDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "rol-controller"
+        ],
+        "operationId": "actualizarRol",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseRolDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "rol-controller"
+        ],
+        "operationId": "inactivarRol",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/permission/{id}": {
+      "get": {
+        "tags": [
+          "permiso-controller"
+        ],
+        "operationId": "obtenerPermisoPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponsePermisoDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "permiso-controller"
+        ],
+        "operationId": "actualizarPermiso",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PermisoDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponsePermisoDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "permiso-controller"
+        ],
+        "operationId": "inactivarPermiso",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/create": {
+      "post": {
+        "tags": [
+          "usuario-controller"
+        ],
+        "operationId": "crearUsuario",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseUsuarioDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/role": {
+      "post": {
+        "tags": [
+          "rol-controller"
+        ],
+        "operationId": "crearRol",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseRolDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/permission": {
+      "post": {
+        "tags": [
+          "permiso-controller"
+        ],
+        "operationId": "crearPermiso",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PermisoDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponsePermisoDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/userList": {
+      "get": {
+        "tags": [
+          "usuario-controller"
+        ],
+        "operationId": "listarUsuarios",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseListUsuarioDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/getById": {
+      "get": {
+        "tags": [
+          "usuario-controller"
+        ],
+        "operationId": "obtenerUsuarioById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseUsuarioDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/getByEmail": {
+      "get": {
+        "tags": [
+          "usuario-controller"
+        ],
+        "operationId": "obtenerUsuarioPorEmail",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseUsuarioDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/role/roleList": {
+      "get": {
+        "tags": [
+          "rol-controller"
+        ],
+        "operationId": "listarRoles",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseListRolDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/role/getByUserId": {
+      "get": {
+        "tags": [
+          "rol-controller"
+        ],
+        "operationId": "obtenerRolPorUsuarioId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseRolDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/permission/permissionList": {
+      "get": {
+        "tags": [
+          "permiso-controller"
+        ],
+        "operationId": "listarPermisos",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseListPermisoDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/permission/getUserById": {
+      "get": {
+        "tags": [
+          "permiso-controller"
+        ],
+        "operationId": "obtenerPermisosPorUsuarioId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseListPermisoDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/deactivateUser": {
+      "delete": {
+        "tags": [
+          "usuario-controller"
+        ],
+        "operationId": "inactivarUsuario",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UsuarioRequest": {
+        "required": [
+          "email",
+          "firstName",
+          "isActive",
+          "password",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "lastName": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "socialNetwork": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isActive": {
+            "type": "boolean"
+          }
+        }
+      },
+      "GeneralResponseUsuarioDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "$ref": "#/components/schemas/UsuarioDTO"
+          }
+        }
+      },
+      "PermisoDTO": {
+        "required": [
+          "description",
+          "name",
+          "permissionId",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "permissionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 250,
+            "minLength": 0,
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          }
+        }
+      },
+      "RolDTO": {
+        "required": [
+          "description",
+          "name",
+          "roleId",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 250,
+            "minLength": 0,
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "permissions": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PermisoDTO"
+            }
+          }
+        }
+      },
+      "UsuarioDTO": {
+        "required": [
+          "email",
+          "firstName",
+          "isActive",
+          "lastName",
+          "password",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "lastName": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "socialNetwork": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedBy": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "role": {
+            "$ref": "#/components/schemas/RolDTO"
+          }
+        }
+      },
+      "GeneralResponseRolDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "$ref": "#/components/schemas/RolDTO"
+          }
+        }
+      },
+      "GeneralResponsePermisoDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "$ref": "#/components/schemas/PermisoDTO"
+          }
+        }
+      },
+      "GeneralResponseListUsuarioDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UsuarioDTO"
+            }
+          }
+        }
+      },
+      "GeneralResponseListRolDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RolDTO"
+            }
+          }
+        }
+      },
+      "GeneralResponseListPermisoDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PermisoDTO"
+            }
+          }
+        }
+      },
+      "GeneralResponseBoolean": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "type": "boolean"
+          }
+        }
+      },
+      "GeneralResponseVoid": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

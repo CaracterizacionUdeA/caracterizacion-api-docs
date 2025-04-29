@@ -1,0 +1,983 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API de UsuarioMS",
+    "description": "Documentación de la API de UsuarioMS",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9191/surveyms",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/survey/{id}": {
+      "get": {
+        "tags": [
+          "encuesta-controller"
+        ],
+        "operationId": "obtenerEncuestaPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseEncuestaDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "encuesta-controller"
+        ],
+        "operationId": "actualizarEncuesta",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EncuestaDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseEncuestaDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "encuesta-controller"
+        ],
+        "operationId": "inactivarEncuesta",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/section/{id}": {
+      "get": {
+        "tags": [
+          "seccion-controller"
+        ],
+        "operationId": "obtenerSeccionPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseSeccionDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "seccion-controller"
+        ],
+        "operationId": "actualizarSeccion",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeccionDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseSeccionDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "seccion-controller"
+        ],
+        "operationId": "inactivarSeccion",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/survey": {
+      "post": {
+        "tags": [
+          "encuesta-controller"
+        ],
+        "operationId": "crearEncuesta",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EncuestaDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseEncuestaDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/survey/clone/{id}": {
+      "post": {
+        "tags": [
+          "encuesta-controller"
+        ],
+        "operationId": "clonarEncuesta",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseEncuestaDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/section": {
+      "post": {
+        "tags": [
+          "seccion-controller"
+        ],
+        "operationId": "crearSeccion",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeccionDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseSeccionDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/section/clone/{id}": {
+      "post": {
+        "tags": [
+          "seccion-controller"
+        ],
+        "operationId": "clonarSeccion",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseSeccionDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/survey/surveyList": {
+      "get": {
+        "tags": [
+          "encuesta-controller"
+        ],
+        "operationId": "listarEncuestas",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseListEncuestaDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/section/survey/{surveyId}": {
+      "get": {
+        "tags": [
+          "seccion-controller"
+        ],
+        "operationId": "listarSeccionesPorEncuestaId",
+        "parameters": [
+          {
+            "name": "surveyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseListSeccionDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CategoriaDTO": {
+        "required": [
+          "categoryId",
+          "name",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "subCategories": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubCategoriaDTO"
+            }
+          }
+        }
+      },
+      "CategoriaEntity": {
+        "type": "object",
+        "properties": {
+          "categoriaId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "nombre": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "estado": {
+            "type": "boolean"
+          },
+          "subCategorias": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubCategoriaEntity"
+            }
+          }
+        }
+      },
+      "EncuestaDTO": {
+        "required": [
+          "description",
+          "status",
+          "surveyId",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "surveyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 250,
+            "minLength": 0,
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdByUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedByUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "responseCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "shareUrl": {
+            "maxLength": 250,
+            "minLength": 0,
+            "type": "string"
+          },
+          "questions": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PreguntaDTO"
+            }
+          },
+          "sections": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SeccionDTO"
+            }
+          }
+        }
+      },
+      "EncuestaEntity": {
+        "type": "object",
+        "properties": {
+          "encuestaId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "titulo": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "descripcion": {
+            "maxLength": 250,
+            "minLength": 0,
+            "type": "string"
+          },
+          "estado": {
+            "type": "string"
+          },
+          "fechaCreacion": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creadoPorUsuario": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fechaModificacion": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificadoPorUsuario": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "numeroRespuestas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fechaInicio": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fechaCierre": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "urlCompartir": {
+            "maxLength": 250,
+            "minLength": 0,
+            "type": "string"
+          },
+          "preguntas": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PreguntaEntity"
+            }
+          },
+          "secciones": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SeccionEntity"
+            }
+          }
+        }
+      },
+      "PreguntaDTO": {
+        "required": [
+          "category",
+          "questionId",
+          "questionType",
+          "required",
+          "status",
+          "survey",
+          "text"
+        ],
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "survey": {
+            "$ref": "#/components/schemas/EncuestaDTO"
+          },
+          "questionType": {
+            "$ref": "#/components/schemas/TipoPreguntaDTO"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoriaDTO"
+          },
+          "text": {
+            "maxLength": 1000,
+            "minLength": 0,
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdByUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedByUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "videoUrl": {
+            "maxLength": 250,
+            "minLength": 0,
+            "type": "string"
+          },
+          "image": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "additionalNote": {
+            "maxLength": 1000,
+            "minLength": 0,
+            "type": "string"
+          },
+          "section": {
+            "$ref": "#/components/schemas/SeccionEntity"
+          }
+        }
+      },
+      "PreguntaEntity": {
+        "type": "object",
+        "properties": {
+          "preguntaId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "encuesta": {
+            "$ref": "#/components/schemas/EncuestaEntity"
+          },
+          "tipoPregunta": {
+            "$ref": "#/components/schemas/TipoPreguntaEntity"
+          },
+          "categoria": {
+            "$ref": "#/components/schemas/CategoriaEntity"
+          },
+          "texto": {
+            "maxLength": 1000,
+            "minLength": 0,
+            "type": "string"
+          },
+          "estado": {
+            "type": "boolean"
+          },
+          "fechaCreacion": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creadoPorUsuario": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fechaModificacion": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificadoPorUsuario": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "urlVideo": {
+            "maxLength": 250,
+            "minLength": 0,
+            "type": "string"
+          },
+          "imagen": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          "orden": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "obligatoria": {
+            "type": "boolean"
+          },
+          "notaAdicional": {
+            "maxLength": 1000,
+            "minLength": 0,
+            "type": "string"
+          },
+          "seccion": {
+            "$ref": "#/components/schemas/SeccionEntity"
+          }
+        }
+      },
+      "SeccionDTO": {
+        "required": [
+          "description",
+          "sectionId",
+          "status",
+          "survey",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "sectionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "survey": {
+            "$ref": "#/components/schemas/EncuestaDTO"
+          },
+          "title": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "image": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          "video": {
+            "maxLength": 250,
+            "minLength": 0,
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 250,
+            "minLength": 0,
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          }
+        }
+      },
+      "SeccionEntity": {
+        "type": "object",
+        "properties": {
+          "seccionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "encuesta": {
+            "$ref": "#/components/schemas/EncuestaEntity"
+          },
+          "titulo": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "imagen": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          "video": {
+            "maxLength": 250,
+            "minLength": 0,
+            "type": "string"
+          },
+          "descripcion": {
+            "maxLength": 250,
+            "minLength": 0,
+            "type": "string"
+          },
+          "estado": {
+            "type": "boolean"
+          },
+          "preguntas": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PreguntaEntity"
+            }
+          }
+        }
+      },
+      "SubCategoriaDTO": {
+        "required": [
+          "name",
+          "status",
+          "subCategoryId"
+        ],
+        "type": "object",
+        "properties": {
+          "subCategoryId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoriaDTO"
+          }
+        }
+      },
+      "SubCategoriaEntity": {
+        "type": "object",
+        "properties": {
+          "subCategoriaId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "nombre": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "estado": {
+            "type": "boolean"
+          },
+          "categoria": {
+            "$ref": "#/components/schemas/CategoriaEntity"
+          }
+        }
+      },
+      "TipoPreguntaDTO": {
+        "required": [
+          "name",
+          "questionTypeId",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "questionTypeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TipoPreguntaEntity": {
+        "type": "object",
+        "properties": {
+          "tipoPreguntaId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "nombre": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string"
+          },
+          "estado": {
+            "type": "boolean"
+          }
+        }
+      },
+      "GeneralResponseEncuestaDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "$ref": "#/components/schemas/EncuestaDTO"
+          }
+        }
+      },
+      "GeneralResponseSeccionDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "$ref": "#/components/schemas/SeccionDTO"
+          }
+        }
+      },
+      "GeneralResponseListEncuestaDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EncuestaDTO"
+            }
+          }
+        }
+      },
+      "GeneralResponseListSeccionDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SeccionDTO"
+            }
+          }
+        }
+      },
+      "GeneralResponseVoid": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}
