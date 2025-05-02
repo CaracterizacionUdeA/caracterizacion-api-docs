@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:9191/surveyms",
+      "url": "https://caracterizacion-api.matroide.com//surveyms",
       "description": "Generated server url"
     }
   ],
