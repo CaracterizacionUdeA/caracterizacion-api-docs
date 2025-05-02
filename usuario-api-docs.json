@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:9393/userms",
+      "url": "https://caracterizacion-api.matroide.com/userms",
       "description": "Generated server url"
     }
   ],
