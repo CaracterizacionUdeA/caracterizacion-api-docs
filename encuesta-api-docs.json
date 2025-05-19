@@ -7,8 +7,8 @@
   },
   "servers": [
     {
-      "url": "https://caracterizacion-api.matroide.com//surveyms",
-      "description": "Generated server url"
+      "url": "https://caracterizacion-api.matroide.com/surveyms",
+      "description": "Server Encuestas"
     }
   ],
   "paths": {
@@ -415,37 +415,7 @@
           }
         }
       },
-      "CategoriaEntity": {
-        "type": "object",
-        "properties": {
-          "categoriaId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "nombre": {
-            "maxLength": 60,
-            "minLength": 0,
-            "type": "string"
-          },
-          "estado": {
-            "type": "boolean"
-          },
-          "subCategorias": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SubCategoriaEntity"
-            }
-          }
-        }
-      },
       "EncuestaDTO": {
-        "required": [
-          "description",
-          "status",
-          "surveyId",
-          "title"
-        ],
         "type": "object",
         "properties": {
           "surveyId": {
@@ -453,13 +423,9 @@
             "format": "uuid"
           },
           "title": {
-            "maxLength": 60,
-            "minLength": 0,
             "type": "string"
           },
           "description": {
-            "maxLength": 250,
-            "minLength": 0,
             "type": "string"
           },
           "status": {
@@ -494,19 +460,9 @@
             "format": "date-time"
           },
           "shareUrl": {
-            "maxLength": 250,
-            "minLength": 0,
             "type": "string"
           },
-          "questions": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PreguntaDTO"
-            }
-          },
           "sections": {
-            "uniqueItems": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SeccionDTO"
@@ -514,93 +470,12 @@
           }
         }
       },
-      "EncuestaEntity": {
-        "type": "object",
-        "properties": {
-          "encuestaId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "titulo": {
-            "maxLength": 60,
-            "minLength": 0,
-            "type": "string"
-          },
-          "descripcion": {
-            "maxLength": 250,
-            "minLength": 0,
-            "type": "string"
-          },
-          "estado": {
-            "type": "string"
-          },
-          "fechaCreacion": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "creadoPorUsuario": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "fechaModificacion": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "modificadoPorUsuario": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "numeroRespuestas": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "fechaInicio": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "fechaCierre": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "urlCompartir": {
-            "maxLength": 250,
-            "minLength": 0,
-            "type": "string"
-          },
-          "preguntas": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PreguntaEntity"
-            }
-          },
-          "secciones": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SeccionEntity"
-            }
-          }
-        }
-      },
       "PreguntaDTO": {
-        "required": [
-          "category",
-          "questionId",
-          "questionType",
-          "required",
-          "status",
-          "survey",
-          "text"
-        ],
         "type": "object",
         "properties": {
           "questionId": {
             "type": "string",
             "format": "uuid"
-          },
-          "survey": {
-            "$ref": "#/components/schemas/EncuestaDTO"
           },
           "questionType": {
             "$ref": "#/components/schemas/TipoPreguntaDTO"
@@ -609,8 +484,6 @@
             "$ref": "#/components/schemas/CategoriaDTO"
           },
           "text": {
-            "maxLength": 1000,
-            "minLength": 0,
             "type": "string"
           },
           "status": {
@@ -633,8 +506,6 @@
             "format": "uuid"
           },
           "videoUrl": {
-            "maxLength": 250,
-            "minLength": 0,
             "type": "string"
           },
           "image": {
@@ -652,104 +523,22 @@
             "type": "boolean"
           },
           "additionalNote": {
-            "maxLength": 1000,
-            "minLength": 0,
             "type": "string"
-          },
-          "section": {
-            "$ref": "#/components/schemas/SeccionEntity"
-          }
-        }
-      },
-      "PreguntaEntity": {
-        "type": "object",
-        "properties": {
-          "preguntaId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "encuesta": {
-            "$ref": "#/components/schemas/EncuestaEntity"
-          },
-          "tipoPregunta": {
-            "$ref": "#/components/schemas/TipoPreguntaEntity"
-          },
-          "categoria": {
-            "$ref": "#/components/schemas/CategoriaEntity"
-          },
-          "texto": {
-            "maxLength": 1000,
-            "minLength": 0,
-            "type": "string"
-          },
-          "estado": {
-            "type": "boolean"
-          },
-          "fechaCreacion": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "creadoPorUsuario": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "fechaModificacion": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "modificadoPorUsuario": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "urlVideo": {
-            "maxLength": 250,
-            "minLength": 0,
-            "type": "string"
-          },
-          "imagen": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "byte"
-            }
-          },
-          "orden": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "obligatoria": {
-            "type": "boolean"
-          },
-          "notaAdicional": {
-            "maxLength": 1000,
-            "minLength": 0,
-            "type": "string"
-          },
-          "seccion": {
-            "$ref": "#/components/schemas/SeccionEntity"
           }
         }
       },
       "SeccionDTO": {
-        "required": [
-          "description",
-          "sectionId",
-          "status",
-          "survey",
-          "title"
-        ],
         "type": "object",
         "properties": {
           "sectionId": {
             "type": "string",
             "format": "uuid"
           },
-          "survey": {
-            "$ref": "#/components/schemas/EncuestaDTO"
+          "surveyId": {
+            "type": "string",
+            "format": "uuid"
           },
           "title": {
-            "maxLength": 60,
-            "minLength": 0,
             "type": "string"
           },
           "image": {
@@ -760,60 +549,18 @@
             }
           },
           "video": {
-            "maxLength": 250,
-            "minLength": 0,
             "type": "string"
           },
           "description": {
-            "maxLength": 250,
-            "minLength": 0,
             "type": "string"
           },
           "status": {
             "type": "boolean"
-          }
-        }
-      },
-      "SeccionEntity": {
-        "type": "object",
-        "properties": {
-          "seccionId": {
-            "type": "string",
-            "format": "uuid"
           },
-          "encuesta": {
-            "$ref": "#/components/schemas/EncuestaEntity"
-          },
-          "titulo": {
-            "maxLength": 60,
-            "minLength": 0,
-            "type": "string"
-          },
-          "imagen": {
+          "questions": {
             "type": "array",
             "items": {
-              "type": "string",
-              "format": "byte"
-            }
-          },
-          "video": {
-            "maxLength": 250,
-            "minLength": 0,
-            "type": "string"
-          },
-          "descripcion": {
-            "maxLength": 250,
-            "minLength": 0,
-            "type": "string"
-          },
-          "estado": {
-            "type": "boolean"
-          },
-          "preguntas": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PreguntaEntity"
+              "$ref": "#/components/schemas/PreguntaDTO"
             }
           }
         }
@@ -843,26 +590,6 @@
           }
         }
       },
-      "SubCategoriaEntity": {
-        "type": "object",
-        "properties": {
-          "subCategoriaId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "nombre": {
-            "maxLength": 60,
-            "minLength": 0,
-            "type": "string"
-          },
-          "estado": {
-            "type": "boolean"
-          },
-          "categoria": {
-            "$ref": "#/components/schemas/CategoriaEntity"
-          }
-        }
-      },
       "TipoPreguntaDTO": {
         "required": [
           "name",
@@ -881,23 +608,6 @@
             "type": "string"
           },
           "status": {
-            "type": "boolean"
-          }
-        }
-      },
-      "TipoPreguntaEntity": {
-        "type": "object",
-        "properties": {
-          "tipoPreguntaId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "nombre": {
-            "maxLength": 60,
-            "minLength": 0,
-            "type": "string"
-          },
-          "estado": {
             "type": "boolean"
           }
         }
