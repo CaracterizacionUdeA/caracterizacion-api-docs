@@ -34,11 +34,13 @@
   <body>
 
     <nav>
+      <a href="#" onclick="showDoc('autenticacion')">Autenticación</a>
       <a href="#" onclick="showDoc('usuario')">Usuarios</a>
       <a href="#" onclick="showDoc('pregunta')">Preguntas</a>
       <a href="#" onclick="showDoc('encuesta')">Encuestas</a>
     </nav>
 
+    <div id="autenticacion" class="doc-section"></div>
     <div id="usuario" class="doc-section"></div>
     <div id="pregunta" class="doc-section"></div>
     <div id="encuesta" class="doc-section"></div>
@@ -49,13 +51,13 @@
         document.getElementById(section).classList.add('active');
       }
 
+      Redoc.init('usuario-api-docs.json', {}, document.getElementById('autenticacion'));
       Redoc.init('usuario-api-docs.json', {}, document.getElementById('usuario'));
       Redoc.init('pregunta-api-docs.json', {}, document.getElementById('pregunta'));
       Redoc.init('encuesta-api-docs.json', {}, document.getElementById('encuesta'));
-
-      // Mostrar la primera sección al cargar
+r
       document.addEventListener('DOMContentLoaded', () => {
-        showDoc('usuario');
+        showDoc('autenticacion');
       });
     </script>
 
