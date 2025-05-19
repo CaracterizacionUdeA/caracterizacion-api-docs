@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "API de UsuarioMS",
-    "description": "Documentación de la API de UsuarioMS",
+    "title": "API de EncuestaMS",
+    "description": "Documentación de la API de EncuestaMS",
     "version": "1.0"
   },
   "servers": [
