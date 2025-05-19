@@ -8,7 +8,7 @@
   "servers": [
     {
       "url": "https://caracterizacion-api.matroide.com/userms",
-      "description": "Generated server url"
+      "description": "Server Usuarios"
     }
   ],
   "paths": {
