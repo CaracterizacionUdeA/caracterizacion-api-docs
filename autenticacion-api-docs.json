@@ -8,7 +8,7 @@
   "servers": [
     {
       "url": "https://caracterizacion-api.matroide.com/authenticationms",
-      "description": Server de Autenticación"
+      "description": "Server autenticación"
     }
   ],
   "paths": {
