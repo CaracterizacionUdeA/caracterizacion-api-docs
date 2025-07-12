@@ -8,7 +8,7 @@
   "servers": [
     {
       "url": "https://caracterizacion-api.matroide.com/surveyms",
-      "description": "Server Encuestas"
+      "description": "Server encuestas"
     }
   ],
   "paths": {
@@ -386,35 +386,6 @@
   },
   "components": {
     "schemas": {
-      "CategoriaDTO": {
-        "required": [
-          "categoryId",
-          "name",
-          "status"
-        ],
-        "type": "object",
-        "properties": {
-          "categoryId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "maxLength": 60,
-            "minLength": 0,
-            "type": "string"
-          },
-          "status": {
-            "type": "boolean"
-          },
-          "subCategories": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SubCategoriaDTO"
-            }
-          }
-        }
-      },
       "EncuestaDTO": {
         "type": "object",
         "properties": {
@@ -461,69 +432,20 @@
           },
           "shareUrl": {
             "type": "string"
-          },
-          "sections": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SeccionDTO"
-            }
           }
         }
       },
-      "PreguntaDTO": {
+      "GeneralResponseEncuestaDTO": {
         "type": "object",
         "properties": {
-          "questionId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "questionType": {
-            "$ref": "#/components/schemas/TipoPreguntaDTO"
-          },
-          "category": {
-            "$ref": "#/components/schemas/CategoriaDTO"
-          },
-          "text": {
-            "type": "string"
-          },
-          "status": {
+          "error": {
             "type": "boolean"
           },
-          "creationDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "createdByUser": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "modificationDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "modifiedByUser": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "videoUrl": {
+          "descripcionRespuesta": {
             "type": "string"
           },
-          "image": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "byte"
-            }
-          },
-          "order": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "required": {
-            "type": "boolean"
-          },
-          "additionalNote": {
-            "type": "string"
+          "resultado": {
+            "$ref": "#/components/schemas/EncuestaDTO"
           }
         }
       },
@@ -542,11 +464,7 @@
             "type": "string"
           },
           "image": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "byte"
-            }
+            "type": "string"
           },
           "video": {
             "type": "string"
@@ -556,73 +474,6 @@
           },
           "status": {
             "type": "boolean"
-          },
-          "questions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PreguntaDTO"
-            }
-          }
-        }
-      },
-      "SubCategoriaDTO": {
-        "required": [
-          "name",
-          "status",
-          "subCategoryId"
-        ],
-        "type": "object",
-        "properties": {
-          "subCategoryId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "maxLength": 60,
-            "minLength": 0,
-            "type": "string"
-          },
-          "status": {
-            "type": "boolean"
-          },
-          "category": {
-            "$ref": "#/components/schemas/CategoriaDTO"
-          }
-        }
-      },
-      "TipoPreguntaDTO": {
-        "required": [
-          "name",
-          "questionTypeId",
-          "status"
-        ],
-        "type": "object",
-        "properties": {
-          "questionTypeId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "maxLength": 60,
-            "minLength": 0,
-            "type": "string"
-          },
-          "status": {
-            "type": "boolean"
-          }
-        }
-      },
-      "GeneralResponseEncuestaDTO": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "boolean"
-          },
-          "descripcionRespuesta": {
-            "type": "string"
-          },
-          "resultado": {
-            "$ref": "#/components/schemas/EncuestaDTO"
           }
         }
       },
