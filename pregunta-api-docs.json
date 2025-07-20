@@ -1,14 +1,14 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "API de PreguntsMS",
+    "title": "API de PreguntasMS",
     "description": "Documentación de la API de PreguntasMS",
     "version": "1.0"
   },
   "servers": [
     {
-      "url": "https://caracterizacion-api.matroide.com/questionms",
-      "description": "Server Preguntas"
+      "url": "https://caracterizacion-api.matroide.com/surveyms",
+      "description": "Generated server url"
     }
   ],
   "paths": {
@@ -134,7 +134,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GeneralResponsePreguntaDTO"
+                  "$ref": "#/components/schemas/GeneralResponsePreguntaResponse"
                 }
               }
             }
@@ -408,6 +408,117 @@
         }
       }
     },
+    "/api/enunciados/{enunciadoId}": {
+      "put": {
+        "tags": [
+          "enunciado-pregunta-controller"
+        ],
+        "operationId": "actualizar",
+        "parameters": [
+          {
+            "name": "enunciadoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnunciadoPreguntaDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseEnunciadoPreguntaDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "enunciado-pregunta-controller"
+        ],
+        "operationId": "eliminar",
+        "parameters": [
+          {
+            "name": "enunciadoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/answers/{respuestaId}": {
+      "put": {
+        "tags": [
+          "respuesta-controller"
+        ],
+        "operationId": "actualizarRespuesta",
+        "parameters": [
+          {
+            "name": "respuestaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RespuestaDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseRespuestaDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/subcategories": {
       "post": {
         "tags": [
@@ -648,6 +759,36 @@
         }
       }
     },
+    "/api/enunciados": {
+      "post": {
+        "tags": [
+          "enunciado-pregunta-controller"
+        ],
+        "operationId": "crear",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnunciadoPreguntaDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseEnunciadoPreguntaDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/answers": {
       "post": {
         "tags": [
@@ -658,7 +799,10 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RespuestaDTO"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RespuestaDTO"
+                }
               }
             }
           },
@@ -670,7 +814,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GeneralResponseRespuestaDTO"
+                  "$ref": "#/components/schemas/GeneralResponseListRespuestaDTO"
                 }
               }
             }
@@ -721,7 +865,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GeneralResponseListPreguntaDTO"
+                  "$ref": "#/components/schemas/GeneralResponseListPreguntaResponse"
                 }
               }
             }
@@ -735,13 +879,35 @@
           "pregunta-controller"
         ],
         "operationId": "listarPreguntas",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GeneralResponseListPreguntaDTO"
+                  "$ref": "#/components/schemas/GeneralResponsePagePreguntaDTO"
                 }
               }
             }
@@ -789,13 +955,84 @@
         }
       }
     },
-    "/answers/section/{sectionId}": {
+    "/api/enunciados/pregunta/{preguntaId}": {
+      "get": {
+        "tags": [
+          "enunciado-pregunta-controller"
+        ],
+        "operationId": "obtenerPorPreguntaId",
+        "parameters": [
+          {
+            "name": "preguntaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseListEnunciadoPreguntaDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/answers/{answerId}": {
       "get": {
         "tags": [
           "respuesta-controller"
         ],
-        "operationId": "respuestasPorSeccionId",
+        "operationId": "respuestaPorPreguntaId",
         "parameters": [
+          {
+            "name": "answerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseListRespuestaDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/answers/{answerId}/{sectionId}": {
+      "get": {
+        "tags": [
+          "respuesta-controller"
+        ],
+        "operationId": "respuestaPorPreguntaIdSeccionId",
+        "parameters": [
+          {
+            "name": "answerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           {
             "name": "sectionId",
             "in": "path",
@@ -820,15 +1057,15 @@
         }
       }
     },
-    "/answers/answer/{answerId}": {
+    "/answers/section/{sectionId}": {
       "get": {
         "tags": [
           "respuesta-controller"
         ],
-        "operationId": "respuestaPorPreguntaId",
+        "operationId": "respuestasPorSeccionId",
         "parameters": [
           {
-            "name": "answerId",
+            "name": "sectionId",
             "in": "path",
             "required": true,
             "schema": {
@@ -948,6 +1185,9 @@
           },
           "imageAltText": {
             "type": "string"
+          },
+          "isBank": {
+            "type": "boolean"
           }
         }
       },
@@ -1043,6 +1283,86 @@
           }
         }
       },
+      "EnunciadoPreguntaDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "description": {
+            "type": "string"
+          },
+          "question_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "GeneralResponseEnunciadoPreguntaDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "$ref": "#/components/schemas/EnunciadoPreguntaDTO"
+          }
+        }
+      },
+      "RespuestaDTO": {
+        "type": "object",
+        "properties": {
+          "answerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "text": {
+            "type": "string"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "questionTypeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "questionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sectionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "statementId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "GeneralResponseRespuestaDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "$ref": "#/components/schemas/RespuestaDTO"
+          }
+        }
+      },
       "AsociarPreguntaSeccionDTO": {
         "required": [
           "questionId",
@@ -1104,39 +1424,7 @@
           }
         }
       },
-      "RespuestaDTO": {
-        "type": "object",
-        "properties": {
-          "answerId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "text": {
-            "type": "string"
-          },
-          "creationDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "questionTypeId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "userId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "questionId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "sectionId": {
-            "type": "string",
-            "format": "uuid"
-          }
-        }
-      },
-      "GeneralResponseRespuestaDTO": {
+      "GeneralResponseListRespuestaDTO": {
         "type": "object",
         "properties": {
           "error": {
@@ -1146,7 +1434,10 @@
             "type": "string"
           },
           "resultado": {
-            "$ref": "#/components/schemas/RespuestaDTO"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RespuestaDTO"
+            }
           }
         }
       },
@@ -1167,7 +1458,41 @@
           }
         }
       },
-      "GeneralResponseListPreguntaDTO": {
+      "GeneralResponsePreguntaResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "$ref": "#/components/schemas/PreguntaResponse"
+          }
+        }
+      },
+      "PreguntaResponse": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "$ref": "#/components/schemas/PreguntaDTO"
+          },
+          "statements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EnunciadoPreguntaDTO"
+            }
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RespuestaDTO"
+            }
+          }
+        }
+      },
+      "GeneralResponseListPreguntaResponse": {
         "type": "object",
         "properties": {
           "error": {
@@ -1179,8 +1504,108 @@
           "resultado": {
             "type": "array",
             "items": {
+              "$ref": "#/components/schemas/PreguntaResponse"
+            }
+          }
+        }
+      },
+      "GeneralResponsePagePreguntaDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "$ref": "#/components/schemas/PagePreguntaDTO"
+          }
+        }
+      },
+      "PagePreguntaDTO": {
+        "type": "object",
+        "properties": {
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "content": {
+            "type": "array",
+            "items": {
               "$ref": "#/components/schemas/PreguntaDTO"
             }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "empty": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PageableObject": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paged": {
+            "type": "boolean"
+          },
+          "unpaged": {
+            "type": "boolean"
+          }
+        }
+      },
+      "SortObject": {
+        "type": "object",
+        "properties": {
+          "empty": {
+            "type": "boolean"
+          },
+          "sorted": {
+            "type": "boolean"
+          },
+          "unsorted": {
+            "type": "boolean"
           }
         }
       },
@@ -1218,7 +1643,7 @@
           }
         }
       },
-      "GeneralResponseListRespuestaDTO": {
+      "GeneralResponseListEnunciadoPreguntaDTO": {
         "type": "object",
         "properties": {
           "error": {
@@ -1230,7 +1655,7 @@
           "resultado": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/RespuestaDTO"
+              "$ref": "#/components/schemas/EnunciadoPreguntaDTO"
             }
           }
         }
