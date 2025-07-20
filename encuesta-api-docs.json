@@ -1,14 +1,14 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "API de EncuestaMS",
-    "description": "Documentación de la API de EncuestaMS",
+    "title": "API de EncuestasMS",
+    "description": "Documentación de la API de EncuestasMS",
     "version": "1.0"
   },
   "servers": [
     {
       "url": "https://caracterizacion-api.matroide.com/surveyms",
-      "description": "Server encuestas"
+      "description": "Generated server url"
     }
   ],
   "paths": {
@@ -35,7 +35,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GeneralResponseEncuestaDTO"
+                  "$ref": "#/components/schemas/GeneralResponseEncuestaResponse"
                 }
               }
             }
@@ -232,7 +232,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GeneralResponseEncuestaDTO"
+                  "$ref": "#/components/schemas/GeneralResponseEncuestaResponse"
                 }
               }
             }
@@ -338,13 +338,35 @@
           "encuesta-controller"
         ],
         "operationId": "listarEncuestas",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GeneralResponseListEncuestaDTO"
+                  "$ref": "#/components/schemas/GeneralResponsePageEncuestaDTO"
                 }
               }
             }
@@ -474,6 +496,13 @@
           },
           "status": {
             "type": "boolean"
+          },
+          "mainSection": {
+            "type": "boolean"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       },
@@ -491,7 +520,21 @@
           }
         }
       },
-      "GeneralResponseListEncuestaDTO": {
+      "EncuestaResponse": {
+        "type": "object",
+        "properties": {
+          "survey": {
+            "$ref": "#/components/schemas/EncuestaDTO"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SeccionDTO"
+            }
+          }
+        }
+      },
+      "GeneralResponseEncuestaResponse": {
         "type": "object",
         "properties": {
           "error": {
@@ -501,10 +544,107 @@
             "type": "string"
           },
           "resultado": {
+            "$ref": "#/components/schemas/EncuestaResponse"
+          }
+        }
+      },
+      "GeneralResponsePageEncuestaDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "descripcionRespuesta": {
+            "type": "string"
+          },
+          "resultado": {
+            "$ref": "#/components/schemas/PageEncuestaDTO"
+          }
+        }
+      },
+      "PageEncuestaDTO": {
+        "type": "object",
+        "properties": {
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "content": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/EncuestaDTO"
             }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "empty": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PageableObject": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paged": {
+            "type": "boolean"
+          },
+          "unpaged": {
+            "type": "boolean"
+          }
+        }
+      },
+      "SortObject": {
+        "type": "object",
+        "properties": {
+          "empty": {
+            "type": "boolean"
+          },
+          "sorted": {
+            "type": "boolean"
+          },
+          "unsorted": {
+            "type": "boolean"
           }
         }
       },
