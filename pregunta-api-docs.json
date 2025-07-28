@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://caracterizacion-api.matroide.com/surveyms",
+      "url": "https://caracterizacion-api.matroide.com/authenticationms",
       "description": "Generated server url"
     }
   ],
@@ -1188,6 +1188,23 @@
           },
           "isBank": {
             "type": "boolean"
+          },
+          "navegateToQuestion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "file": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          "fileName": {
+            "type": "string"
+          },
+          "fileType": {
+            "type": "string"
           }
         }
       },
@@ -1346,6 +1363,13 @@
           "statementId": {
             "type": "string",
             "format": "uuid"
+          },
+          "filePDF": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "byte"
+            }
           }
         }
       },
@@ -1526,13 +1550,13 @@
       "PagePreguntaDTO": {
         "type": "object",
         "properties": {
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          },
           "totalElements": {
             "type": "integer",
             "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
           },
           "size": {
             "type": "integer",
@@ -1579,18 +1603,18 @@
           "sort": {
             "$ref": "#/components/schemas/SortObject"
           },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
           "pageNumber": {
             "type": "integer",
             "format": "int32"
           },
-          "paged": {
-            "type": "boolean"
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
           },
           "unpaged": {
+            "type": "boolean"
+          },
+          "paged": {
             "type": "boolean"
           }
         }
